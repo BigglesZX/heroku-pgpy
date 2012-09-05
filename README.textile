@@ -15,6 +15,10 @@ You probably want to include pgpy in your project as a submodule, as it will nee
 bc. $ cd myproject
 $ git submodule add git://github.com/BigglesZX/heroku-pgpy.git heroku-pgpy
 
+@pgpy@ requires the Requests library so that will need to be present in your project environment. If you use @pip@, you're in luck.
+
+bc. $ pip install requests
+
 h2. Configuration
 
 None, as @pgpy@ picks up all the info it needs by inspecting your Heroku environment variables.
