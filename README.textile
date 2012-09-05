@@ -1,0 +1,41 @@
+h1. heroku-pgpy
+
+Lightweight Heroku pgbackups implementation for Python.
+
+Until mid-2012 Heroku's free *pgbackups* offering included an *auto-month* service, which provided automated daily backups with a daily, weekly and month archive. This is no longer included on the free database tier, so @pgpy@ provides a script that can be called *server-side* from "Heroku Scheduler":https://addons.heroku.com/scheduler (their cron package) to automate your backups.
+
+Various Ruby gems exist that perform similar functions, but most seem to upload the backups to S3 whereas I wanted to use the native pgbackups storage mechanism. Also, how about that Python, you guys?
+
+By examining the official "Toolbelt":https://github.com/heroku/heroku/ client I was able to write a small Python library that uses the native platform functions to create, store and inventory backups.
+
+h2. Installation
+
+You probably want to include pgpy in your project as a submodule, as it will need to be pushed to Heroku along with the rest of your project. See the "docs":http://git-scm.com/book/en/Git-Tools-Submodules on submodules if you need help.
+
+bc. $ cd myproject
+$ git submodule add git://github.com/BigglesZX/heroku-pgpy.git heroku-pgpy
+
+h2. Configuration
+
+None, as @pgpy@ picks up all the info it needs by inspecting your Heroku environment variables.
+
+h2. Usage
+
+Run @pgpy@ from Heroku Scheduler, or manually via @heroku run heroku-pgpy/pg.py@ or via the shell using @heroku bash@. *Note:* @pgpy@ cannot be run locally. It is designed to be run on the server side where the Heroku features are accessible.
+
+With the @--show@ option @pgpy@ will show your recent backups; with the @--capture@ option it will create one, expiring an old backup if necessary.
+
+bc. $ heroku run heroku-pgpy/pg.py --show
+$ heroku run heroku-pgpy/pg.py --capture
+
+h2. Troubleshooting
+
+@pgpy@ identifies itself as the Heroku client gem in order to access server-side resources. If your backups fail with errors like "your Heroku client version is out of date", ensure you have the latest copy of @pgpy@. The latest version should increment the @HEROKU_GEM_VERSION@ var at the top of the file so that it matches a recent version of the official gem. See "here":https://github.com/heroku/heroku/blob/master/lib/heroku/version.rb#L2 for the latest if you feel like changing it yourself.
+
+h2. Resources
+
+Based on an inspection of the Heroku client code "here":https://github.com/heroku/heroku/blob/master/lib/heroku/client/pgbackups.rb and "here":https://github.com/heroku/heroku/blob/master/lib/heroku/command/pgbackups.rb. Thanks to Will at Heroku for his "assistance":http://stackoverflow.com/questions/11953272/what-commands-does-heroku-pgbackupscapture-run-on-the-server-to-perform-bac#comment15940432_11954250 .
+
+h2. Obligatory Disclaimer
+
+This is beta software still under development, and while all functionality within @pgpy@ is taken from the official Heroku client, it is used at your own risk. @pgpy@ has not been reviewed by Heroku and no endorsement is implied.
