@@ -25,12 +25,12 @@ None, as @pgpy@ picks up all the info it needs by inspecting your Heroku environ
 
 h2. Usage
 
-Run @pgpy@ from Heroku Scheduler, or manually via @heroku run heroku-pgpy/pg.py@ or via the shell using @heroku bash@. *Note:* @pgpy@ cannot be run locally. It is designed to be run on the server side where the Heroku features are accessible.
+Run @pgpy@ from Heroku Scheduler, or manually via @heroku run python heroku-pgpy/pg.py@ or via the shell using @heroku bash@. *Note:* @pgpy@ cannot be run locally. It is designed to be run on the server side where the Heroku features are accessible.
 
 With the @--show@ option @pgpy@ will show your recent backups; with the @--capture@ option it will create one, expiring an old backup if necessary.
 
-bc. $ heroku run heroku-pgpy/pg.py --show
-$ heroku run heroku-pgpy/pg.py --capture
+bc. $ heroku run python heroku-pgpy/pg.py --show
+$ heroku run python heroku-pgpy/pg.py --capture
 
 **It is strongly recommended that you schedule your backups to run no frequently than once a day, as per the original schedule of the pgbackups addon at the auto-month level.**
 
