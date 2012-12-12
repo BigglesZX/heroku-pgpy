@@ -32,14 +32,16 @@ With the @--show@ option @pgpy@ will show your recent backups; with the @--captu
 bc. $ heroku run heroku-pgpy/pg.py --show
 $ heroku run heroku-pgpy/pg.py --capture
 
+**It is strongly recommended that you schedule your backups to run no frequently than once a day, as per the original schedule of the pgbackups addon at the auto-month level.**
+
 h2. Troubleshooting
 
 @pgpy@ identifies itself as the Heroku client gem in order to access server-side resources. If your backups fail with errors like "your Heroku client version is out of date", ensure you have the latest copy of @pgpy@. The latest version should increment the @HEROKU_GEM_VERSION@ var at the top of the file so that it matches a recent version of the official gem. See "here":https://github.com/heroku/heroku/blob/master/lib/heroku/version.rb#L2 for the latest if you feel like changing it yourself.
 
 h2. Resources
 
-Based on an inspection of the Heroku client code "here":https://github.com/heroku/heroku/blob/master/lib/heroku/client/pgbackups.rb and "here":https://github.com/heroku/heroku/blob/master/lib/heroku/command/pgbackups.rb. Thanks to Will at Heroku for his "assistance":http://stackoverflow.com/questions/11953272/what-commands-does-heroku-pgbackupscapture-run-on-the-server-to-perform-bac#comment15940432_11954250 .
+Based on an inspection of the Heroku client code "here":https://github.com/heroku/heroku/blob/master/lib/heroku/client/pgbackups.rb and "here":https://github.com/heroku/heroku/blob/master/lib/heroku/command/pgbackups.rb. Thanks to Will at Heroku for his "assistance":http://stackoverflow.com/questions/11953272/what-commands-does-heroku-pgbackupscapture-run-on-the-server-to-perform-bac#comment15940432_11954250 and "approval":http://stackoverflow.com/questions/12295969/can-someone-from-heroku-confirm-my-backup-script-doesnt-violate-their-terms/12307746#12307746 .
 
 h2. Obligatory Disclaimer
 
-This is beta software still under development, and while all functionality within @pgpy@ is taken from the official Heroku client, it is used at your own risk. @pgpy@ has not been reviewed by Heroku and no endorsement is implied.
+This is beta software still under development, and while all functionality within @pgpy@ is taken from the official Heroku client, it is used at your own risk. @pgpy@ uses API calls that are subject to change, so it may be necessary to update the library from time to time to keep up with changes to the Heroku platform.

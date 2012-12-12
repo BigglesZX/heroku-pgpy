@@ -14,7 +14,7 @@ https://github.com/BigglesZX/heroku-pgpy
 
 
 ''' We unfortunately have to ape the Heroku client gem in order to access the API '''
-HEROKU_GEM_VERSION = '2.31.2'
+HEROKU_GEM_VERSION = '2.33.3'
 
 
 def _build_auth():
