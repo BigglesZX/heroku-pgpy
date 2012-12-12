@@ -63,7 +63,10 @@ def show_latest_backup():
                      auth=_build_auth(),
                      headers=_build_headers())
     if r.ok:
-        print "Latest backup: %s (%s)" % (r.json['from_name'], r.json['created_at'])
+        if 'from_name' in r.json:
+            print "Latest backup: %s (%s)" % (r.json['from_name'], r.json['created_at'])
+        else:
+            print "No backups created yet."
     else:
         print "Request failed: %s" % r.reason
         print "If the server said 'need Heroku client version x', please update pgpy."
