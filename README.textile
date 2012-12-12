@@ -2,7 +2,7 @@ h1. heroku-pgpy
 
 Lightweight Heroku pgbackups implementation for Python.
 
-Until mid-2012 Heroku's free *pgbackups* offering included an *auto-month* service, which provided automated daily backups with a daily, weekly and month archive. This is no longer included on the free database tier, so @pgpy@ provides a script that can be called *server-side* from "Heroku Scheduler":https://addons.heroku.com/scheduler (their cron package) to automate your backups.
+Until mid-2012 Heroku's free *pgbackups* offering included an *auto-month* service, which provided automated daily backups with a daily, weekly and monthly archive. This is no longer included on the free database tier, so @pgpy@ provides a script that can be called *server-side* from "Heroku Scheduler":https://addons.heroku.com/scheduler (their cron package) to automate your backups.
 
 Various Ruby gems exist that perform similar functions, but most seem to upload the backups to S3 whereas I wanted to use the native pgbackups storage mechanism. Also, how about that Python, you guys?
 
