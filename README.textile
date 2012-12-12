@@ -1,3 +1,5 @@
+|*NOTE: As of December 2012, the official pgbackups:auto-month addon is free again, making this script redundant. I'll leave it here for general interest, and in case Heroku decide to start charging for the addon again in the future.*|
+
 h1. heroku-pgpy
 
 Lightweight Heroku pgbackups implementation for Python.

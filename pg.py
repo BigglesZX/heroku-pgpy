@@ -15,6 +15,7 @@ https://github.com/BigglesZX/heroku-pgpy
 
 ''' We unfortunately have to ape the Heroku client gem in order to access the API '''
 HEROKU_GEM_VERSION = '2.33.3'
+TIMEOUT = 15
 
 
 def _build_auth():
@@ -61,7 +62,8 @@ def _get_db_url():
 def show_latest_backup():
     r = requests.get(_build_request_url('/client/latest_backup'),
                      auth=_build_auth(),
-                     headers=_build_headers())
+                     headers=_build_headers(),
+                     timeout=TIMEOUT)
     if r.ok:
         if 'from_name' in r.json:
             print "Latest backup: %s (%s)" % (r.json['from_name'], r.json['created_at'])
@@ -84,7 +86,8 @@ def capture_backup():
     r = requests.post(_build_request_url('/client/transfers'),
                       auth=_build_auth(),
                       headers=_build_headers(),
-                      data=payload)
+                      data=payload,
+                      timeout=TIMEOUT)
     if r.ok:
         print "Initiating backup..."
     else:
