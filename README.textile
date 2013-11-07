@@ -47,3 +47,5 @@ Based on an inspection of the Heroku client code "here":https://github.com/herok
 h2. Obligatory Disclaimer
 
 This is beta software still under development, and while all functionality within @pgpy@ is taken from the official Heroku client, it is used at your own risk. @pgpy@ uses API calls that are subject to change, so it may be necessary to update the library from time to time to keep up with changes to the Heroku platform.
+
+This is not an official Heroku product; it is not developed by Heroku or supported or endorsed by them beyond the approval of its use linked above.
